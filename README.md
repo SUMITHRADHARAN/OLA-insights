@@ -511,3 +511,50 @@ To conduct a comprehensive analysis of OLA's ride data, focusing on key aspects 
 
 ---
 # Streamlit
+
+Building a Streamlit application for OLA insights involves connecting to your processed data and Power BI visuals through a structured development process. The steps below detail how to achieve this based on your project requirements: 
+
+*Streamlit Application Development Process:*
+
+1. Set Up Environment:
+Install Streamlit: Make sure Python is installed, then run pip install streamlit.
+Install Dependencies: Install other necessary libraries like pandas, sqlalchemy (for database connection), and matplotlib/plotly (if you are creating custom visualizations in Streamlit itself).
+Create a Python Script: Create a main Python file, e.g., app.py, which will be the entry point for your application.
+
+2. Connect to Data Source:
+Establish Database Connection: Use Python libraries (e.g., sqlalchemy or database-specific connectors like psycopg2 for PostgreSQL, mysql-connector-python for MySQL) to connect your Streamlit app to the database where your SQL query results are stored.
+Fetch Data: Write functions in your Python script to execute the pre-developed SQL queries and load the results into a Pandas DataFrame using Streamlit's data handling elements (st.dataframe, st.table).
+Cache Data: Use Streamlit's @st.cache_data decorator to cache data fetching functions, preventing unnecessary re-runs every time a user interacts with the app, thus improving performance.
+
+3. Design User Interface (UI):
+Add App Title and Headers: Use st.title() and st.header() to structure your app and provide clear information about the OLA insights project.
+Implement Layout: Use st.sidebar, st.columns, and st.tabs to organize content, create a user-friendly layout, and separate different insights or sections.
+Add Interactive Filters and Search: Leverage Streamlit widgets in the sidebar or main body for user input:
+st.selectbox for selecting ride statuses or payment methods.
+st.slider for filtering data based on ratings or time ranges.
+st.text_input for search functionalities.
+
+4. Display Insights and SQL Results:
+Display Dataframes: Show query results using st.dataframe or st.table with interactive features.
+Create Visualizations: Use Python visualization libraries (like Plotly, Matplotlib, Seaborn) within your Streamlit app to create interactive charts for data not covered by the Power BI dashboard (e.g., custom analysis on customer behavior or fraud detection).
+
+5. Embed Power BI Visuals:
+Publish Power BI Report: Ensure your Power BI dashboard is published to the Power BI service.
+Get Embed Code: Obtain the embed code (iframe URL) for your report from the Power BI service.
+Embed in Streamlit: Use the streamlit.components.v1.html component to embed the Power BI iframe into your Streamlit application.
+
+6. Run and Test Locally:
+Execute the Script: Run your application from the terminal using the command: streamlit run app.py.
+Test Functionality: Interact with all filters, check data displays, verify SQL query results are accurate, and ensure the Power BI dashboard loads correctly within the app.
+
+7. Document and Deploy:
+Create requirements.txt: Generate a file listing all necessary Python packages and their versions to ensure a consistent environment on the deployment server.
+Use Version Control: Push your project code to a public GitHub repository.
+Deploy: Use a platform like Streamlit Community Cloud for easy deployment by connecting your GitHub repository.
+Final Documentation: Document all insights, the logic behind your SQL queries, and explanations of the dashboard as part of the final project documentation.
+<img width="1891" height="826" alt="image" src="https://github.com/user-attachments/assets/b3326a70-0ce8-43ac-b524-4a704ef4d8be" />
+<img width="1386" height="729" alt="image" src="https://github.com/user-attachments/assets/1d57d2fd-3313-4755-ad7f-c8b0f3836656" />
+
+
+
+
