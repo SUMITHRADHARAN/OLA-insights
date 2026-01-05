@@ -479,8 +479,9 @@ Create requirements.txt: Generate a file listing all necessary Python packages a
 Use Version Control: Push your project code to a public GitHub repository.
 Deploy: Use a platform like Streamlit Community Cloud for easy deployment by connecting your GitHub repository.
 Final Documentation: Document all insights, the logic behind your SQL queries, and explanations of the dashboard as part of the final project documentation.
-<img width="1891" height="826" alt="image" src="https://github.com/user-attachments/assets/b3326a70-0ce8-43ac-b524-4a704ef4d8be" />
+<img width="1915" height="857" alt="image" src="https://github.com/user-attachments/assets/278471ff-9b31-4bb4-9f69-ff11e1b3441e" />
 <img width="1386" height="729" alt="image" src="https://github.com/user-attachments/assets/1d57d2fd-3313-4755-ad7f-c8b0f3836656" />
+
 
 
 
