@@ -103,18 +103,11 @@ To work with the database, we first need to import the data from the `bookings.c
 **📝 Query:**
 
 ```sql
-CREATE VIEW Successful_Bookings AS
-SELECT *
-FROM bookings
-WHERE Booking_Status = 'Success';
+CREATE OR REPLACE VIEW Success_Booking AS
+SELECT * FROM book WHERE Booking_Status = 'Success';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM Successful_Bookings;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20062720.png)
 
 ---
@@ -124,18 +117,11 @@ SELECT * FROM Successful_Bookings;
 **📝 Query:**
 
 ```sql
-CREATE VIEW ride_distance_for_each_vehicle AS
-SELECT Vehicle_Type, AVG(Ride_Distance) AS avg_distance
-FROM bookings
-GROUP BY Vehicle_Type;
+CREATE OR REPLACE VIEW average_ride_distance_for_each_vehicle AS 
+SELECT Vehicle_Type, AVG(Ride_Distance) AS avg_distance FROM book GROUP BY Vehicle_Type;
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM ride_distance_for_each_vehicle;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20063354.png)
 
 ---
@@ -145,18 +131,11 @@ SELECT * FROM ride_distance_for_each_vehicle;
 **📝 Query:**
 
 ```sql
-CREATE VIEW cancelled_rides_by_customers AS
-SELECT COUNT(*) AS total_cancelled_rides
-FROM bookings
-WHERE Booking_Status = 'cancelled by Customer';
+CREATE OR REPLACE VIEW number_of_cancelled_rides AS 
+SELECT COUNT(*) AS total_cancelled FROM book WHERE Booking_Status = 'Canceled by Customer';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM cancelled_rides_by_customers;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20063653.png)
 
 ---
@@ -166,20 +145,11 @@ SELECT * FROM cancelled_rides_by_customers;
 **📝 Query:**
 
 ```sql
-CREATE VIEW Top_5_Customers AS
-SELECT Customer_ID, COUNT(Booking_ID) AS total_rides
-FROM bookings
-GROUP BY Customer_ID
-ORDER BY total_rides DESC
-LIMIT 5;
+CREATE OR REPLACE VIEW top_5_customers AS 
+SELECT Customer_ID, COUNT(Booking_ID) AS total_rides FROM book GROUP BY Customer_ID ORDER BY total_rides DESC LIMIT 5;
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM Top_5_Customers;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20063859.png)
 
 ---
@@ -189,18 +159,11 @@ SELECT * FROM Top_5_Customers;
 **📝 Query:**
 
 ```sql
-CREATE VIEW Rides_cancelled_by_Drivers_P_C_Issues AS
-SELECT COUNT(*) AS cancelled_by_drivers
-FROM bookings
-WHERE cancelled_Rides_by_Driver = 'Personal & Car related issue';
+CREATE OR REPLACE VIEW rides_cancelled_by_drivers AS 
+SELECT COUNT(*) AS cancelled_count FROM book WHERE Canceled_Rides_by_Driver = 'Personal & Car related issue';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM Rides_cancelled_by_Drivers_P_C_Issues;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20064122.png)
 
 ---
@@ -210,19 +173,11 @@ SELECT * FROM Rides_cancelled_by_Drivers_P_C_Issues;
 **📝 Query:**
 
 ```sql
-CREATE VIEW Max_Min_Driver_Rating AS
-SELECT MAX(Driver_Ratings) AS max_rating,
-       MIN(Driver_Ratings) AS min_rating
-FROM bookings
-WHERE Vehicle_Type = 'Prime Sedan';
+CREATE OR REPLACE VIEW Max_Min_Driver_Rating AS 
+SELECT MAX(Driver_Ratings) AS max_rating, MIN(Driver_Ratings) AS min_rating FROM book WHERE Vehicle_Type = 'Prime Sedan';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM Max_Min_Driver_Rating;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20064314.png)
 
 ---
@@ -232,18 +187,11 @@ SELECT * FROM Max_Min_Driver_Rating;
 **📝 Query:**
 
 ```sql
-CREATE VIEW UPI_Payment AS
-SELECT *
-FROM bookings
-WHERE Payment_Method = 'UPI';
+CREATE OR REPLACE VIEW UPI_payments AS 
+SELECT * FROM book WHERE Payment_Method = 'UPI';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM UPI_Payment;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20064820.png)
 
 ---
@@ -253,18 +201,11 @@ SELECT * FROM UPI_Payment;
 **📝 Query:**
 
 ```sql
-CREATE VIEW AVG_Cust_Rating AS
-SELECT Vehicle_Type, AVG(Customer_Rating) AS avg_customer_rating
-FROM bookings
-GROUP BY Vehicle_Type;
+CREATE OR REPLACE VIEW avg_rating_for_v_type AS 
+SELECT Vehicle_Type, ROUND(AVG(Customer_Rating), 1) AS avg_rating FROM book GROUP BY Vehicle_Type;
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM AVG_Cust_Rating;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20064923.png)
 
 ---
@@ -274,18 +215,11 @@ SELECT * FROM AVG_Cust_Rating;
 **📝 Query:**
 
 ```sql
-CREATE VIEW total_successful_ride_value AS
-SELECT SUM(Booking_Value) AS total_successful_ride_value
-FROM bookings
-WHERE Booking_Status = 'Success';
+CREATE OR REPLACE VIEW total_booking_value_rides_completed AS 
+SELECT SUM(Booking_Value) AS total_successful_value FROM book WHERE Booking_Status = 'Success';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM total_successful_ride_value;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20065052.png)
 
 ---
@@ -295,18 +229,11 @@ SELECT * FROM total_successful_ride_value;
 **📝 Query:**
 
 ```sql
-CREATE VIEW Incomplete_Rides_Reason AS
-SELECT Booking_ID, Incomplete_Rides_Reason
-FROM bookings
-WHERE Incomplete_Rides = 'Yes';
+CREATE OR REPLACE VIEW Incomplete_Rides_Reason_View AS 
+SELECT Booking_ID, Incomplete_Rides_Reason FROM book WHERE Incomplete_Rides = 'Yes';
 ```
 
 **📊 Answer:**
-
-```sql
-SELECT * FROM Incomplete_Rides_Reason;
-```
-
 ![Description of the screenshot](https://github.com/PrajwalGpy/OLA-Data-Analyst-Project-Power-BI-And-SQL/blob/main/images/SQL%20images/Screenshot%202024-12-16%20065216.png)
 
 ---
@@ -554,6 +481,7 @@ Deploy: Use a platform like Streamlit Community Cloud for easy deployment by con
 Final Documentation: Document all insights, the logic behind your SQL queries, and explanations of the dashboard as part of the final project documentation.
 <img width="1891" height="826" alt="image" src="https://github.com/user-attachments/assets/b3326a70-0ce8-43ac-b524-4a704ef4d8be" />
 <img width="1386" height="729" alt="image" src="https://github.com/user-attachments/assets/1d57d2fd-3313-4755-ad7f-c8b0f3836656" />
+
 
 
 
